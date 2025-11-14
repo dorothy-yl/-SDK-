@@ -7,6 +7,7 @@ use_modular_headers!
 platform :ios, '12.0'
 inhibit_all_warnings!
 
+
 target 'tuya-bizbundle-ios-sample-objc_Example' do
   pod 'SVProgressHUD'
   pod 'SnapKit'
@@ -23,70 +24,70 @@ target 'tuya-bizbundle-ios-sample-objc_Example' do
   pod 'ThingSmartCryption', :path => './ios_core_sdk'
   
   # Family
-  pod 'ThingSmartFamilyBizBundle', '~> 6.7.0'
+  pod 'ThingSmartFamilyBizBundle', '~> 6.11.0'
   
   # Device pairing
-  pod 'ThingSmartActivatorBizBundle', '~> 6.7.0'
+  pod 'ThingSmartActivatorBizBundle', '~> 6.11.0'
   
   # Device panel (RN)
-  pod 'ThingSmartPanelBizBundle', '~> 6.7.0'
-  pod 'ThingSmartSpeakExtendBizBundle', '~> 6.7.0'
-  pod 'ThingSmartSceneExtendBizBundle', '~> 6.7.0'
-  pod 'ThingSmartSweeperExtendBizBundle', '~> 6.7.0'
-  pod 'ThingSmartHealthExtendBizBundle', '~> 6.7.0'
-  pod 'ThingSmartLangsExtraBizBundle', '~> 6.7.0'
+  pod 'ThingSmartPanelBizBundle', '~> 6.11.0'
+  pod 'ThingSmartSpeakExtendBizBundle', '~> 6.11.0'
+  pod 'ThingSmartSceneExtendBizBundle', '~> 6.11.0'
+  pod 'ThingSmartSweeperExtendBizBundle', '~> 6.11.0'
+  pod 'ThingSmartHealthExtendBizBundle', '~> 6.11.0'
+  pod 'ThingSmartLangsExtraBizBundle', '~> 6.11.0'
   
   # Device panel (Miniapp)
-  pod "ThingSmartMiniAppBizBundle", '~> 6.7.0'
-  pod 'ThingSmartBaseKitBizBundle', '~> 6.7.0'
-  pod 'ThingSmartBizKitBizBundle', '~> 6.7.0'
-  pod 'ThingSmartDeviceKitBizBundle', '~> 6.7.0'
+  pod "ThingSmartMiniAppBizBundle", '~> 6.11.0'
+  pod 'ThingSmartBaseKitBizBundle', '~> 6.11.0'
+  pod 'ThingSmartBizKitBizBundle', '~> 6.11.0'
+  pod 'ThingSmartDeviceKitBizBundle', '~> 6.11.0'
   
   # Device details
-  pod 'ThingSmartDeviceDetailBizBundle', '~> 6.7.0'
+  pod 'ThingSmartDeviceDetailBizBundle', '~> 6.11.0'
   
   # Device OTA updates
-  pod 'ThingSmartOTABizBundle', '~> 6.7.0'
+  pod 'ThingSmartOTABizBundle', '~> 6.11.0'
   
   # Scene
-  pod 'ThingSmartSceneBizBundle', '~> 6.7.0'
+  pod 'ThingSmartSceneBizBundle', '~> 6.11.0'
   
   # Message center
-  pod 'ThingSmartMessageBizBundle', '~> 6.7.0'
+  pod 'ThingSmartMessageBizBundle', '~> 6.11.0'
   
   # Camera
-  pod 'ThingSmartCameraPanelBizBundle', '~> 6.7.0'
-  pod 'ThingSmartCameraRNPanelBizBundle', '~> 6.7.0'
-  pod 'ThingSmartCameraSettingBizBundle', '~> 6.7.0'
-  pod 'ThingSmartCloudServiceBizBundle', '~> 6.7.0'
+  pod 'ThingSmartCameraPanelBizBundle', '~> 6.11.0'
+  pod 'ThingSmartCameraRNPanelBizBundle', '~> 6.11.0'
+  pod 'ThingSmartCameraSettingBizBundle', '~> 6.11.0'
+  pod 'ThingSmartCloudServiceBizBundle', '~> 6.11.0'
   
   # Help
-  pod 'ThingSmartHelpCenterBizBundle', '~> 6.7.0'
+  pod 'ThingSmartHelpCenterBizBundle', '~> 6.11.0'
 
   # Theme
-  pod 'ThingSmartThemeManagerBizBundle', '~> 6.7.0'
+  pod 'ThingSmartThemeManagerBizBundle', '~> 6.11.0'
 
   # Settings
-  pod 'ThingSmartSettingBizBundle', '~> 6.7.0'
+  pod 'ThingSmartSettingBizBundle', '~> 6.11.0'
   
   #################
   # Advanced features
   #################
 
   # Voice skill
-  pod 'ThingSmartSkillQuickBindBizBundle', '~> 6.7.0'
+  pod 'ThingSmartSkillQuickBindBizBundle', '~> 6.11.0'
   
   # Light scene
-  pod 'ThingSmartLightSceneBizBundle', '~> 6.7.0'
+  pod 'ThingSmartLightSceneBizBundle', '~> 6.11.0'
 
   # Marketing
-  pod 'ThingSmartMarketingBizBundle', '~> 6.7.0'
+  pod 'ThingSmartMarketingBizBundle', '~> 6.11.0'
 
   # Mall
-  pod 'ThingSmartMallBizBundle', '~> 6.7.0'
+  pod 'ThingSmartMallBizBundle', '~> 6.11.0'
 
   # Value-added services
-  pod 'ThingAdvancedFunctionsBizBundle', '~> 6.7.0'
+  pod 'ThingAdvancedFunctionsBizBundle', '~> 6.11.0'
   
   
   #################
@@ -94,29 +95,32 @@ target 'tuya-bizbundle-ios-sample-objc_Example' do
   #################
   
   # [Required] Basic
-  pod 'ThingSmartHomeKit', '~> 6.7.0'
-  pod 'ThingSmartBusinessExtensionKit', '~> 6.7.0'
+  pod 'ThingSmartHomeKit', '~> 6.11.0'
+  pod 'ThingSmartBusinessExtensionKit', '~> 6.11.0'
   
   # [Optional] Bluetooth
-  pod 'ThingSmartBusinessExtensionKitBLEExtra','~> 6.7.0'
+  pod 'ThingSmartBusinessExtensionKitBLEExtra','~> 6.11.0'
   
   # [Optional] Matter
-  pod 'ThingSmartMatterKit', '~> 5.21.0'
-  pod 'ThingSmartMatterExtensionKit', '~> 5.17.0'
-  pod 'ThingSmartBusinessExtensionKitMatterExtra','~> 6.7.0'
+  pod 'ThingSmartMatterKit', '~> 6.11.0'
+  pod 'ThingSmartMatterExtensionKit', '~> 6.11.0'
+  pod 'ThingSmartBusinessExtensionKitMatterExtra','~> 6.11.0'
   
   # [Optional] HomeKit device
-  pod 'ThingSmartAppleDeviceKit', '~> 6.7.0'
+  pod 'ThingSmartAppleDeviceKit', '~> 6.11.0'
   
   # [Optional] Special category
-  pod 'ThingSmartCameraKit', '~> 6.7.0'
-  pod 'ThingSmartOutdoorKit', '~> 6.7.0'
-  pod 'ThingSmartSweeperKit', '~> 6.7.0'
-  pod 'ThingSmartLockKit', '~> 6.7.0'
+  pod 'ThingSmartCameraKit', '~> 6.11.0'
+  pod 'ThingSmartOutdoorKit', '~> 6.11.0'
+  pod 'ThingSmartSweeperKit', '~> 6.11.0'
+  pod 'ThingSmartLockKit', '~> 6.11.0'
 
   # [Optional] AI
-  pod  'ThingSmartBusinessExtensionKitAIStreamExtra', '~> 6.7.0'
+  pod  'ThingSmartBusinessExtensionKitAIStreamExtra', '~> 6.11.0'
   
+  # [Optional] AI Assistant
+  pod 'ThingSmartAIAssistantBizBundle', '~> 6.11.0'
+
 end
 
 post_install do |installer|

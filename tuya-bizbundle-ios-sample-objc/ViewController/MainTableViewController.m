@@ -17,6 +17,7 @@
 #import "ThemeManagerViewController.h"
 #import "ServiceListViewController.h"
 #import "tuya_bizbundle_ios_sample_objc_Example-Swift.h"
+#import <ThingModuleManager/ThingModuleManager.h>
 
 @interface MainTableViewController () <ThingSmartHomeManagerDelegate>
 
@@ -79,7 +80,8 @@
         @[ACTION_NULL],
         
         @[ACTION(@selector(gotoThemeManager))],
-        @[ACTION(@selector(gotoServiceList)),ACTION(@selector(gotoBuyPhone)), ACTION(@selector(gotoBuySMS))]
+        @[ACTION(@selector(gotoServiceList)),ACTION(@selector(gotoBuyPhone)), ACTION(@selector(gotoBuySMS))],
+        @[ACTION(@selector(openAIAssistant))],
     ];
 }
 
@@ -261,6 +263,14 @@
             NSLog(@"request sms error %@", error);
         }
     }];
+}
+
+- (void)openAIAssistant {
+    id<ThingModuleRouteBlueprint> impl = [[ThingSmartBizCore sharedInstance] serviceOfProtocol:@protocol(ThingModuleRouteBlueprint)];
+
+    // you should replace the link with your own AI Assistant mini app link
+    NSString *link = @"miniApp?url=godzilla://tynd4cl6fgspw1samx&aiPtChannel=pj_1a4b4c28e741c000";
+    [impl openRoute:link withParams:nil];
 }
 
 
