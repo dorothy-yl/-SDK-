@@ -1,13 +1,15 @@
 {
-    "config":
-    {
-        "appId":"",
-        "thingAppKey":"",
-        "appScheme":"",
-        "needBle":true,
-        "is_support_home_manager":true,
-        "need_backgroud_audio":true,
-        "hotspotPrefixs": ["AAA", "BBB"]
+    "config": {
+        "appId": 969033333,
+        "thingAppKey": "",
+        "appScheme": "",
+        "needBle": true,
+        "is_support_home_manager": true,
+        "need_backgroud_audio": true,
+        "hotspotPrefixs": [
+            "AAA",
+            "BBB"
+        ]
     },
     "colors": {
         "themeColor": "#FFA228"
