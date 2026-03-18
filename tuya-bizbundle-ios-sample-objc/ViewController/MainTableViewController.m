@@ -19,6 +19,22 @@
 #import "tuya_bizbundle_ios_sample_objc_Example-Swift.h"
 #import <ThingModuleManager/ThingModuleManager.h>
 
+static UIColor *MainDemoColorFromHex(NSString *hexString) {
+    NSString *cleanHex = [[hexString stringByReplacingOccurrencesOfString:@"#" withString:@""] uppercaseString];
+    unsigned int rgbValue = 0;
+    [[NSScanner scannerWithString:cleanHex] scanHexInt:&rgbValue];
+    return [UIColor colorWithRed:((rgbValue >> 16) & 0xFF) / 255.0
+                           green:((rgbValue >> 8) & 0xFF) / 255.0
+                            blue:(rgbValue & 0xFF) / 255.0
+                           alpha:1.0];
+}
+
+static UIColor *MainDemoBrandPrimaryColor(void) { return MainDemoColorFromHex(@"#2F6BFF"); }
+static UIColor *MainDemoPageBackgroundColor(void) { return MainDemoColorFromHex(@"#F7F9FC"); }
+static UIColor *MainDemoCardBackgroundColor(void) { return MainDemoColorFromHex(@"#FFFFFF"); }
+static UIColor *MainDemoTextPrimaryColor(void) { return MainDemoColorFromHex(@"#1B2430"); }
+static UIColor *MainDemoTextSecondaryColor(void) { return MainDemoColorFromHex(@"#5B667A"); }
+
 @interface MainTableViewController () <ThingSmartHomeManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
@@ -34,6 +50,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.largeTitleDisplayMode = UINavigationItemLargeTitleDisplayModeNever;
+    self.navigationItem.title = @"涂鸦智能";
+    self.view.backgroundColor = MainDemoPageBackgroundColor();
+    self.tableView.backgroundColor = MainDemoPageBackgroundColor();
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    if (@available(iOS 15.0, *)) {
+        self.tableView.sectionHeaderTopPadding = 6.0;
+    }
+
+    [self.logoutButton setTitleColor:MainDemoBrandPrimaryColor() forState:UIControlStateNormal];
+    self.logoutButton.titleLabel.font = [UIFont systemFontOfSize:15.0 weight:UIFontWeightSemibold];
+    self.logoutButton.backgroundColor = UIColor.clearColor;
+    self.logoutButton.layer.cornerRadius = 0.0;
+    self.logoutButton.contentEdgeInsets = UIEdgeInsetsZero;
+
+    self.currentHomeLabel.textColor = MainDemoTextSecondaryColor();
+    self.currentHomeLabel.font = [UIFont systemFontOfSize:15.0 weight:UIFontWeightRegular];
+    self.currentHomeLabel.textAlignment = NSTextAlignmentRight;
     [self initiateCurrentHome];
     [[ThingSmartBizCore sharedInstance] registerService:@protocol(ThingSmartHomeDataProtocol) withInstance:self];
     [[ThingSmartBizCore sharedInstance] registerService:@protocol(ThingSmartHouseIndexProtocol) withInstance:self];
@@ -83,6 +117,67 @@
         @[ACTION(@selector(gotoServiceList)),ACTION(@selector(gotoBuyPhone)), ACTION(@selector(gotoBuySMS))],
         @[ACTION(@selector(openAIAssistant))],
     ];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSArray<NSString *> *titles = @[
+        @"家庭",
+        @"配网",
+        @"设备详情",
+        @"设备面板"
+    ];
+    if (section < titles.count) {
+        return titles[section];
+    }
+    return [super tableView:tableView titleForHeaderInSection:section];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
+    if ([view isKindOfClass:[UITableViewHeaderFooterView class]]) {
+        UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+        header.contentView.backgroundColor = MainDemoPageBackgroundColor();
+        header.textLabel.textColor = MainDemoTextSecondaryColor();
+        header.textLabel.font = [UIFont systemFontOfSize:13.0 weight:UIFontWeightSemibold];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    cell.backgroundColor = UIColor.clearColor;
+    cell.contentView.backgroundColor = UIColor.clearColor;
+
+    CGRect cardFrame = CGRectInset(cell.bounds, 14.0, 4.0);
+    UIView *cardBackground = [[UIView alloc] initWithFrame:cardFrame];
+    cardBackground.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    cardBackground.backgroundColor = MainDemoCardBackgroundColor();
+    cardBackground.layer.cornerRadius = 14.0;
+    cardBackground.layer.masksToBounds = YES;
+    cell.backgroundView = cardBackground;
+
+    UIView *selectedBackground = [[UIView alloc] initWithFrame:cardFrame];
+    selectedBackground.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    selectedBackground.backgroundColor = [MainDemoBrandPrimaryColor() colorWithAlphaComponent:0.12];
+    selectedBackground.layer.cornerRadius = 14.0;
+    selectedBackground.layer.masksToBounds = YES;
+    cell.selectedBackgroundView = selectedBackground;
+
+    [self styleLabelsInView:cell.contentView];
+}
+
+- (void)styleLabelsInView:(UIView *)container {
+    for (UIView *subview in container.subviews) {
+        if ([subview isKindOfClass:[UILabel class]]) {
+            UILabel *label = (UILabel *)subview;
+            if (label == self.currentHomeLabel) {
+                label.textColor = MainDemoTextSecondaryColor();
+                label.font = [UIFont systemFontOfSize:15.0 weight:UIFontWeightRegular];
+            } else {
+                label.textColor = MainDemoTextPrimaryColor();
+                label.font = [UIFont systemFontOfSize:16 weight:UIFontWeightMedium];
+            }
+        } else {
+            [self styleLabelsInView:subview];
+        }
+    }
 }
 
 - (ThingSmartHome *)getCurrentHome {

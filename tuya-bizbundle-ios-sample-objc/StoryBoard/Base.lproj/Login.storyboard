@@ -152,6 +152,7 @@
                         <outlet property="accountTextField" destination="0Qz-La-oYh" id="Q1T-tn-Ht4"/>
                         <outlet property="countryCodeTextField" destination="k7Z-L9-7PN" id="Ead-le-LDS"/>
                         <outlet property="forgetPasswordButton" destination="9MR-le-GWV" id="8pR-CP-zba"/>
+                        <outlet property="loginButton" destination="yoX-Qn-PEK" id="hCj-wY-7p1"/>
                         <outlet property="passwordTextField" destination="eYm-X4-pFJ" id="hDN-pT-dPt"/>
                     </connections>
                 </tableViewController>

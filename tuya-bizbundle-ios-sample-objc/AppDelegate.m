@@ -17,6 +17,21 @@
 #import "AppDelegate.h"
 #import "AppKey.h"
 
+static UIColor *DemoColorFromHex(NSString *hexString) {
+    NSString *cleanHex = [[hexString stringByReplacingOccurrencesOfString:@"#" withString:@""] uppercaseString];
+    unsigned int rgbValue = 0;
+    [[NSScanner scannerWithString:cleanHex] scanHexInt:&rgbValue];
+    return [UIColor colorWithRed:((rgbValue >> 16) & 0xFF) / 255.0
+                           green:((rgbValue >> 8) & 0xFF) / 255.0
+                            blue:(rgbValue & 0xFF) / 255.0
+                           alpha:1.0];
+}
+
+static UIColor *DemoBrandPrimaryColor(void) { return DemoColorFromHex(@"#2F6BFF"); }
+static UIColor *DemoPageBackgroundColor(void) { return DemoColorFromHex(@"#FFFFFF"); }
+static UIColor *DemoTextPrimaryColor(void) { return DemoColorFromHex(@"#1B2430"); }
+static UIColor *DemoDividerColor(void) { return DemoColorFromHex(@"#E6EBF2"); }
+
 
 @interface AppDelegate () <UINavigationControllerDelegate>
 
@@ -44,12 +59,15 @@
     if (@available(iOS 13, *)) {
         UINavigationBar * navigationBar = [UINavigationBar appearance];
         UINavigationBarAppearance * navigationBarAppearance = [[UINavigationBarAppearance alloc] init];
-        navigationBarAppearance.backgroundColor = UIColor.blackColor;
+        [navigationBarAppearance configureWithOpaqueBackground];
+        navigationBarAppearance.backgroundColor = DemoPageBackgroundColor();
+        navigationBarAppearance.shadowColor = DemoDividerColor();
         navigationBarAppearance.titleTextAttributes =  @{
-            NSForegroundColorAttributeName : UIColor.redColor,
-            NSFontAttributeName:[UIFont systemFontOfSize:22]
+            NSForegroundColorAttributeName : DemoTextPrimaryColor(),
+            NSFontAttributeName:[UIFont systemFontOfSize:20 weight:UIFontWeightSemibold]
         };
-        
+        navigationBar.tintColor = DemoBrandPrimaryColor();
+        navigationBar.prefersLargeTitles = NO;
         navigationBar.standardAppearance = navigationBarAppearance;
         navigationBar.scrollEdgeAppearance = navigationBarAppearance;
     }

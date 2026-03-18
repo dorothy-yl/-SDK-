@@ -70,8 +70,10 @@
                     </view>
                     <navigationItem key="navigationItem" title="Tuya SDK Sample" id="CWv-aU-yDU"/>
                     <connections>
+                        <outlet property="actionStackView" destination="d1U-b2-hBU" id="NXV-LE-Oxv"/>
                         <outlet property="loginButton" destination="Cbb-x5-OQ8" id="6h8-0H-axW"/>
                         <outlet property="registerButton" destination="YiB-nC-tNo" id="ej1-0I-0cy"/>
+                        <outlet property="versionLabel" destination="bGF-Pc-rVR" id="qVy-4L-gk3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HL3-FY-208" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -103,7 +105,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="d5n-Sr-JsU" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="Nch-4k-wVV">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Nch-4k-wVV">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
