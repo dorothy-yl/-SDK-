@@ -61,14 +61,14 @@
                         <viewLayoutGuide key="safeArea" id="I9M-Sv-At2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="bGF-Pc-rVR" firstAttribute="top" secondItem="d1U-b2-hBU" secondAttribute="bottom" constant="44" id="AYz-p6-0Qa"/>
                             <constraint firstItem="I9M-Sv-At2" firstAttribute="trailing" secondItem="d1U-b2-hBU" secondAttribute="trailing" constant="44" id="YO0-eF-l8E"/>
                             <constraint firstItem="bGF-Pc-rVR" firstAttribute="bottom" secondItem="I9M-Sv-At2" secondAttribute="bottom" id="gLv-LE-N7e"/>
                             <constraint firstItem="d1U-b2-hBU" firstAttribute="leading" secondItem="I9M-Sv-At2" secondAttribute="leading" constant="44" id="qs9-XA-Noh"/>
                             <constraint firstItem="bGF-Pc-rVR" firstAttribute="centerX" secondItem="2rq-zy-7ke" secondAttribute="centerX" id="u2Q-Vt-ae1"/>
+                            <constraint firstItem="d1U-b2-hBU" firstAttribute="centerY" secondItem="I9M-Sv-At2" secondAttribute="centerY" id="zTg-Wc-DnM"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Tuya SDK Sample" id="CWv-aU-yDU"/>
+                    <navigationItem key="navigationItem" title="涂鸦智能" id="CWv-aU-yDU"/>
                     <connections>
                         <outlet property="actionStackView" destination="d1U-b2-hBU" id="NXV-LE-Oxv"/>
                         <outlet property="loginButton" destination="Cbb-x5-OQ8" id="6h8-0H-axW"/>

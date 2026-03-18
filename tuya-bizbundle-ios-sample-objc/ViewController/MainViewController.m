@@ -35,6 +35,7 @@ static UIColor *MainPageColorFromHex(NSString *hexString) {
     if (@available(iOS 14.0, *)) {
         self.navigationItem.backButtonDisplayMode = UINavigationItemBackButtonDisplayModeMinimal;
     }
+    self.navigationItem.title = @"涂鸦智能";
     [self configureView];
 }
 
@@ -63,32 +64,6 @@ static UIColor *MainPageColorFromHex(NSString *hexString) {
 
     self.versionLabel.textColor = secondaryTextColor;
     self.versionLabel.font = [UIFont systemFontOfSize:15.0 weight:UIFontWeightRegular];
-
-    UILabel *heroTitle = [[UILabel alloc] init];
-    heroTitle.translatesAutoresizingMaskIntoConstraints = NO;
-    heroTitle.text = @"涂鸦智能";
-    heroTitle.textColor = primaryTextColor;
-    heroTitle.font = [UIFont systemFontOfSize:34.0 weight:UIFontWeightSemibold];
-
-    UILabel *heroSubtitle = [[UILabel alloc] init];
-    heroSubtitle.translatesAutoresizingMaskIntoConstraints = NO;
-    heroSubtitle.text = @"连接设备，掌控你的家";
-    heroSubtitle.textColor = secondaryTextColor;
-    heroSubtitle.font = [UIFont systemFontOfSize:17.0 weight:UIFontWeightRegular];
-
-    [self.view addSubview:heroTitle];
-    [self.view addSubview:heroSubtitle];
-
-    UILayoutGuide *safeArea = self.view.safeAreaLayoutGuide;
-    [NSLayoutConstraint activateConstraints:@[
-        [heroTitle.leadingAnchor constraintEqualToAnchor:safeArea.leadingAnchor constant:32.0],
-        [heroTitle.trailingAnchor constraintLessThanOrEqualToAnchor:safeArea.trailingAnchor constant:-32.0],
-        [heroTitle.topAnchor constraintEqualToAnchor:safeArea.topAnchor constant:44.0],
-
-        [heroSubtitle.leadingAnchor constraintEqualToAnchor:heroTitle.leadingAnchor],
-        [heroSubtitle.trailingAnchor constraintLessThanOrEqualToAnchor:safeArea.trailingAnchor constant:-32.0],
-        [heroSubtitle.topAnchor constraintEqualToAnchor:heroTitle.bottomAnchor constant:10.0]
-    ]];
 }
 
 @end

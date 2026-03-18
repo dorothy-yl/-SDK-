@@ -94,42 +94,21 @@ static UIColor *MainDemoTextSecondaryColor(void) { return MainDemoColorFromHex(@
 - (void)setupActionMapping {
     self.actionMapping = @[
         @[ACTION(@selector(gotoFamilyManagement)), ACTION_NULL, ACTION(@selector(logoutTapped:))],
-        @[ACTION(@selector(gotoCategoryViewController)),ACTION(@selector(gotoProductActivatorViewController))],
+        @[ACTION(@selector(gotoCategoryViewController))],
         @[ACTION_NULL],
-        @[ACTION_NULL],
-        @[ACTION_NULL],
-
-        @[ACTION(@selector(gotoAddScene))],
-        @[ACTION(@selector(gotoMessageCenterViewControllerWithAnimated))],
-        @[ACTION(@selector(gotoHelpCenter))],
-        @[ACTION(@selector(requestMallPage))],
-        @[ACTION_NULL],
-        @[ACTION_NULL],
-        
-        @[ACTION(@selector(gotoAmazonAlexa))],
-        @[ACTION(@selector(gotoAddLightScene))],
-        @[ACTION(@selector(gotoShare))],
-        @[ACTION(@selector(gotoMiniApp))],
-        
-        @[ACTION_NULL],
-        
-        @[ACTION(@selector(gotoThemeManager))],
-        @[ACTION(@selector(gotoServiceList)),ACTION(@selector(gotoBuyPhone)), ACTION(@selector(gotoBuySMS))],
-        @[ACTION(@selector(openAIAssistant))],
+        @[ACTION_NULL]
     ];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    NSArray<NSString *> *titles = @[
-        @"家庭",
-        @"配网",
-        @"设备详情",
-        @"设备面板"
-    ];
-    if (section < titles.count) {
-        return titles[section];
+    if (section == 0) {
+        return @"家庭";
     }
-    return [super tableView:tableView titleForHeaderInSection:section];
+    return nil;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return section == 0 ? 28.0 : 6.0;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {

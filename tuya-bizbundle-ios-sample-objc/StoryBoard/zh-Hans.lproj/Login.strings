@@ -20,7 +20,7 @@
 "k7Z-L9-7PN.placeholder" = "国家码";
 
 /* Class = "UINavigationItem"; title = "Login"; ObjectID = "kEH-w9-yzz"; */
-"kEH-w9-yzz.title" = "登录";
+"kEH-w9-yzz.title" = "登陆";
 
 /* Class = "UITextField"; placeholder = "Country Code"; ObjectID = "tmd-dx-fqr"; */
 "tmd-dx-fqr.placeholder" = "国家码";
@@ -35,5 +35,4 @@
 "yCi-uu-Voj.placeholder" = "新密码";
 
 /* Class = "UIButton"; normalTitle = "Login"; ObjectID = "yoX-Qn-PEK"; */
-"yoX-Qn-PEK.normalTitle" = "登录";
-
+"yoX-Qn-PEK.normalTitle" = "登陆";

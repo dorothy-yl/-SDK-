@@ -28,6 +28,8 @@ static const CGFloat LoginDemoCornerRadiusInput = 12.0;
 static const CGFloat LoginDemoCornerRadiusCard = 16.0;
 static const CGFloat LoginDemoCornerRadiusButton = 12.0;
 static const CGFloat LoginDemoHorizontalPadding = 20.0;
+static const NSInteger LoginDemoHeaderTitleTag = 1001;
+static const NSInteger LoginDemoHeaderSubtitleTag = 1002;
 
 @interface LoginTableViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *countryCodeTextField;
@@ -43,7 +45,7 @@ static const CGFloat LoginDemoHorizontalPadding = 20.0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.largeTitleDisplayMode = UINavigationItemLargeTitleDisplayModeNever;
-    self.title = NSLocalizedString(@"Login", nil);
+    self.title = @"登陆";
     self.view.backgroundColor = LoginDemoPageBackgroundColor();
     self.tableView.backgroundColor = LoginDemoPageBackgroundColor();
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -59,24 +61,63 @@ static const CGFloat LoginDemoHorizontalPadding = 20.0;
     [self styleForgetPasswordButton];
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [self updateBrandHeaderLayout];
+}
+
 - (void)setupBrandHeader {
-    CGFloat width = CGRectGetWidth(self.tableView.bounds);
-    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, width, 122.0)];
+    UIView *header = [[UIView alloc] initWithFrame:CGRectZero];
     header.backgroundColor = UIColor.clearColor;
 
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(LoginDemoHorizontalPadding, 24.0, width - LoginDemoHorizontalPadding * 2.0, 34.0)];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    titleLabel.tag = LoginDemoHeaderTitleTag;
     titleLabel.text = @"欢迎回来";
     titleLabel.font = [UIFont systemFontOfSize:28 weight:UIFontWeightSemibold];
     titleLabel.textColor = LoginDemoTextPrimaryColor();
+    titleLabel.textAlignment = NSTextAlignmentCenter;
 
-    UILabel *subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(LoginDemoHorizontalPadding, 68.0, width - LoginDemoHorizontalPadding * 2.0, 20.0)];
+    UILabel *subtitleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    subtitleLabel.tag = LoginDemoHeaderSubtitleTag;
     subtitleLabel.text = @"登录以继续使用智能家庭服务";
     subtitleLabel.font = [UIFont systemFontOfSize:13 weight:UIFontWeightRegular];
     subtitleLabel.textColor = LoginDemoTextSecondaryColor();
+    subtitleLabel.textAlignment = NSTextAlignmentCenter;
 
     [header addSubview:titleLabel];
     [header addSubview:subtitleLabel];
     self.tableView.tableHeaderView = header;
+    [self updateBrandHeaderLayout];
+}
+
+- (CGFloat)brandHeaderHeight {
+    CGFloat screenHeight = CGRectGetHeight(self.view.bounds);
+    return MIN(MAX(screenHeight * 0.38, 260.0), 360.0);
+}
+
+- (void)updateBrandHeaderLayout {
+    UIView *header = self.tableView.tableHeaderView;
+    if (!header) {
+        return;
+    }
+
+    CGFloat width = CGRectGetWidth(self.tableView.bounds);
+    CGFloat headerHeight = [self brandHeaderHeight];
+    CGRect headerFrame = header.frame;
+    BOOL frameChanged = ABS(headerFrame.size.width - width) > 0.5 || ABS(headerFrame.size.height - headerHeight) > 0.5;
+    if (frameChanged) {
+        headerFrame.size.width = width;
+        headerFrame.size.height = headerHeight;
+        header.frame = headerFrame;
+        self.tableView.tableHeaderView = header;
+    }
+
+    UILabel *titleLabel = [header viewWithTag:LoginDemoHeaderTitleTag];
+    UILabel *subtitleLabel = [header viewWithTag:LoginDemoHeaderSubtitleTag];
+    CGFloat blockHeight = 66.0;
+    CGFloat startY = (headerHeight - blockHeight) * 0.5;
+    titleLabel.frame = CGRectMake(LoginDemoHorizontalPadding, startY, width - LoginDemoHorizontalPadding * 2.0, 34.0);
+    subtitleLabel.frame = CGRectMake(LoginDemoHorizontalPadding, startY + 46.0, width - LoginDemoHorizontalPadding * 2.0, 20.0);
 }
 
 - (void)styleTextField:(UITextField *)textField {
@@ -99,6 +140,21 @@ static const CGFloat LoginDemoHorizontalPadding = 20.0;
     self.loginButton.titleLabel.font = [UIFont systemFontOfSize:17 weight:UIFontWeightSemibold];
     self.loginButton.layer.cornerRadius = LoginDemoCornerRadiusButton;
     self.loginButton.layer.masksToBounds = YES;
+    
+    UIView *container = self.loginButton.superview;
+    NSMutableArray<NSLayoutConstraint *> *constraintsToRemove = [NSMutableArray array];
+    for (NSLayoutConstraint *constraint in container.constraints) {
+        if (constraint.firstItem == self.loginButton || constraint.secondItem == self.loginButton) {
+            [constraintsToRemove addObject:constraint];
+        }
+    }
+    [container removeConstraints:constraintsToRemove];
+    [NSLayoutConstraint activateConstraints:@[
+        [self.loginButton.leadingAnchor constraintEqualToAnchor:container.leadingAnchor constant:16.0],
+        [self.loginButton.trailingAnchor constraintEqualToAnchor:container.trailingAnchor constant:-16.0],
+        [self.loginButton.topAnchor constraintEqualToAnchor:container.topAnchor constant:8.0],
+        [self.loginButton.bottomAnchor constraintEqualToAnchor:container.bottomAnchor constant:-8.0]
+    ]];
 }
 
 - (void)styleForgetPasswordButton {

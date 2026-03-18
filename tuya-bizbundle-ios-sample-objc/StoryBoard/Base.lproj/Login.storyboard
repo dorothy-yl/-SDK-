@@ -102,7 +102,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yoX-Qn-PEK">
                                                     <rect key="frame" x="168" y="7" width="38" height="30"/>
-                                                    <state key="normal" title="Login"/>
+                                                    <state key="normal" title="登陆"/>
                                                     <connections>
                                                         <action selector="login:" destination="PEB-QI-ZXI" eventType="touchUpInside" id="dHH-w1-dYl"/>
                                                     </connections>
@@ -147,7 +147,7 @@
                             <outlet property="delegate" destination="PEB-QI-ZXI" id="2de-ZV-XRz"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Login" id="kEH-w9-yzz"/>
+                    <navigationItem key="navigationItem" title="登陆" id="kEH-w9-yzz"/>
                     <connections>
                         <outlet property="accountTextField" destination="0Qz-La-oYh" id="Q1T-tn-Ht4"/>
                         <outlet property="countryCodeTextField" destination="k7Z-L9-7PN" id="Ead-le-LDS"/>
